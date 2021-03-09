@@ -15,7 +15,7 @@ We are happy to welcome all the contributions from anyone willing to improve/add
 - Forking this Repo will create a Local copy of this project on Github.
 ```
 
-$ git clone https://github.com/<your-username>/Batua
+$ git clone https://github.com/<your-username>/Batua.git
 $ cd Batua
 ```
 
