@@ -11,8 +11,9 @@ We are happy to welcome all the contributions from anyone willing to improve/add
 - Explain your Solution/Approach to resolve the selected issue to the Maintainer in the Issues Section.
 - Wait for the Issue to be assigned to you after which you can start working on it.
 
-## Step 2 : Fork the Project
+## Step 2 : Fork and Clone the Project
 - Forking this Repo will create a Local copy of this project on Github.
+- After forking , clone the project to get a copy of the project in your local machine.
 ```
 
 $ git clone https://github.com/<your-username>/Batua.git
