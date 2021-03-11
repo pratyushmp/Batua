@@ -87,7 +87,6 @@ class SignUpScreenState extends State<SignUpScreen>{
 
                 },
                 decoration: InputDecoration(
-                  labelText: 'Type something...',
                   hintText: 'Type something...',
                   fillColor: textField_color,
                   filled: true,
@@ -128,7 +127,6 @@ class SignUpScreenState extends State<SignUpScreen>{
 
                 },
                 decoration: InputDecoration(
-                    labelText: 'Enter Password',
                     hintText: 'Enter Password',
                     fillColor: textField_color,
                     filled: true,
@@ -169,7 +167,6 @@ class SignUpScreenState extends State<SignUpScreen>{
 
                 },
                 decoration: InputDecoration(
-                    labelText: 'Confirm Password',
                     hintText: 'Confirm Password',
                     fillColor: textField_color,
                     filled: true,
