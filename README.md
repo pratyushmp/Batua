@@ -11,4 +11,6 @@ Batua is the best money manager and daily expense tracker to automatically and s
 </tr>
 </table>
 
+### Google-services.json file
+https://drive.google.com/file/d/1-BHo4po-p11s8qNos32L7R5Zo1NFmJVT/view?usp=sharing
 ## Checkout the [Contributing.md](Contributing.md) file before getting started with your contribution.
