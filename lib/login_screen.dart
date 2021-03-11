@@ -1,6 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+//files
+import 'sign_up.dart';
 import 'utils/constants.dart';
+
 class LoginScreen extends StatefulWidget{
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -28,17 +33,17 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               SizedBox(height:35.0),
               RichText(text: TextSpan(
-                  style: TextStyle(fontSize: 58,color: black_heading,fontWeight: FontWeight.w900,letterSpacing: 2.0),
+                  style: TextStyle(fontSize: 58,color: black_heading,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
                   children:[
-                    TextSpan(text:'Hello \nThere '),
-                    TextSpan(text:'.',style:TextStyle(color: secondary_color,fontWeight: FontWeight.w900)),
+                    TextSpan(text:'Hello \nThere'),
+                    TextSpan(text:' .',style:TextStyle(color: secondary_color,fontWeight: FontWeight.w900)),
                   ]
               )
               ),
               SizedBox(height: 10.0),
-              Text("Sign In and start saving",style:TextStyle(fontSize:18.0,letterSpacing:2.0,color: secondary_color,fontWeight: FontWeight.w800)),
+              Text("Sign In and start saving",style:TextStyle(fontSize:18.0,letterSpacing:2.0,color: secondary_color,fontWeight: FontWeight.w900)),
               SizedBox(height: 35.0),
-              Text("Email",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w800)),
+              Text("Email",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
               SizedBox(height: 15.0),
               TextField(
                 controller: _emailController,
@@ -49,11 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   contentPadding: EdgeInsets.only(left: 10.0),
                   enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
                   focusedBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
-                  hintText: "Type Something..",
+                  hintText: "Enter Email",
                 ),
               ),
               SizedBox(height: 25.0),
-              Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w800)),
+              Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
               SizedBox(height: 15.0),
               TextField(
                 controller: _passwordController,
@@ -79,43 +84,34 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 15.0),
               Center(child: Text("OR",style: TextStyle(fontSize:18.0,fontWeight: FontWeight.w900),)),
-              SizedBox(height: 10.0),
               Center(
                 child: Container(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      TextButton.icon(
+                      IconButton(
                           onPressed:(){},
-                          icon:Image(
-                              height: 30.0,
-                              width: 30.0,
-                              image: NetworkImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/768px-Google_%22G%22_Logo.svg.png")),
-                          label: Text("")
+                          icon:FaIcon(FontAwesomeIcons.google,size: 30.0,color: black_heading),
                       ),
                       SizedBox(width: 45.0),
-                      TextButton.icon(
+                      IconButton(
                           onPressed:(){},
-                          icon:Image(
-                              height: 30.0,
-                              width: 30.0,
-                              image: NetworkImage("https://facebookbrand.com/wp-content/uploads/2019/04/f_logo_RGB-Hex-Blue_512.png?w=512&h=512")),
-                          label: Text("")
+                          icon:FaIcon(FontAwesomeIcons.facebook,size: 30.0,color: black_heading),
                       )
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 15.0),
+              SizedBox(height: 10.0),
               Center(
                 child: RichText(
                   text: TextSpan(
-                      style:TextStyle(fontSize:18.0,color:secondary_color,fontWeight: FontWeight.w800),
+                      style:TextStyle(fontSize:16.0,color:secondary_color,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
                       children: [
                         TextSpan(text:"Don't have an account? "),
                         TextSpan(
                             text: "Create one!",
-                            recognizer:TapGestureRecognizer()..onTap = (){},
+                            recognizer:TapGestureRecognizer()..onTap = goToSignUpScreen,
                             style: TextStyle(decoration: TextDecoration.underline,)
                         )
                       ]
@@ -127,5 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+  void goToSignUpScreen(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SignUpScreen();}));
   }
 }
