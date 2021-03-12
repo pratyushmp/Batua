@@ -9,12 +9,14 @@ class SignUpScreen extends StatefulWidget{
 }
 
 class SignUpScreenState extends State<SignUpScreen>{
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
 
-  static Color textField_color2 = Color(0x42000000).withOpacity(0.05);
+  // ignore: non_constant_identifier_names
+  static Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
+  // ignore: non_constant_identifier_names
   static Color textField_color = Colors.grey.withOpacity(0.10);
 
   @override
@@ -28,8 +30,9 @@ class SignUpScreenState extends State<SignUpScreen>{
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 10),
+                // ignore: avoid_unnecessary_containers
                 child: Container(
-                  child: Text('Get \nStarted',
+                  child: const Text('Get \nStarted',
                   style: TextStyle(
                     height: 1.1,
                     fontWeight: FontWeight.bold,
@@ -55,6 +58,7 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            // ignore: avoid_unnecessary_containers
             child: Container(
               child: Text('Sign Up and start saving!',
                 style: TextStyle(
@@ -68,8 +72,9 @@ class SignUpScreenState extends State<SignUpScreen>{
           SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0,bottom: 10),
+            // ignore: avoid_unnecessary_containers
             child: Container(
-              child: Text('Email',
+              child: const Text('Email',
                 style: TextStyle(
                   fontSize: 20,
                     fontFamily: 'Poppins',
@@ -79,6 +84,7 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left:20.0,right: 20.0,bottom: 22.0),
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: MediaQuery.of(context).size.height*0.065,
               child: TextFormField(
@@ -108,8 +114,9 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0,bottom: 10),
+            // ignore: avoid_unnecessary_containers
             child: Container(
-              child: Text('Password',
+              child: const Text('Password',
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily: 'Poppins',
@@ -119,6 +126,7 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left:20.0,right: 20,bottom: 22),
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: MediaQuery.of(context).size.height*0.065,
               child: TextFormField(
@@ -148,8 +156,9 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0,bottom: 10),
+            // ignore: avoid_unnecessary_containers
             child: Container(
-              child: Text('Confirm Password',
+              child: const Text('Confirm Password',
                 style: TextStyle(
                   fontSize: 20,
                   fontFamily:  'Poppins',
@@ -159,6 +168,7 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left:20.0,right: 20,bottom: 22),
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: MediaQuery.of(context).size.height*0.065,
               child: TextFormField(
@@ -188,15 +198,17 @@ class SignUpScreenState extends State<SignUpScreen>{
           ),
           Padding(
             padding: const EdgeInsets.only(left:20.0,right: 20,top: 20),
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: MediaQuery.of(context).size.height*0.065,
+              // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: (){
                   setState(() {
                       debugPrint("Sign up");
                   });
                 },
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))
                 ),
                 color: secondary_color,
