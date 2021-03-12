@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //files
 import 'sign_up.dart';
 import 'utils/constants.dart';
+import 'google_signin.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget{
   @override
@@ -90,7 +92,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                          onPressed:(){},
+                          onPressed:(){
+                            signInWithGoogle().then(
+                                  (result) {
+                                if (result != null) {
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return HomeScreen();
+                                      },
+                                    ),
+                                  );
+                                };
+                              },
+                            );
+                          },
                           icon:FaIcon(FontAwesomeIcons.google,size: 30.0,color: black_heading),
                       ),
                       SizedBox(width: 45.0),
