@@ -8,7 +8,7 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 Future<String> signInWithGoogle() async {
   await Firebase.initializeApp();
 
-  final GoogleSignInAccount googleSignInAccount = (await googleSignIn.signIn());
+  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
 
   final AuthCredential credential = GoogleAuthProvider.credential(

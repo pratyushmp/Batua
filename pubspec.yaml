@@ -27,6 +27,8 @@ dependencies:
   firebase_core:
   firebase_auth:
   google_sign_in:
+  lint: ^1.5.3
+
 
 
   # The following adds the Cupertino Icons font to your application.
