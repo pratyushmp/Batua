@@ -8,22 +8,21 @@ import 'home_screen.dart';
 import 'sign_up.dart';
 import 'utils/constants.dart';
 
-class LoginScreen extends StatefulWidget{
+class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   //Text Editing controllers
-  final TextEditingController _emailController=TextEditingController();
-  final TextEditingController _passwordController=TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   //Colors
   // ignore: non_constant_identifier_names
   Color textField_fill_color = const Color(0xFFEBEBEB);
   // ignore: non_constant_identifier_names
-  Color black_heading=const Color(0xFF000000);
+  Color black_heading = const Color(0xFF000000);
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +34,33 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height:35.0),
-              RichText(text: TextSpan(
-                  style: TextStyle(fontSize: 58,color: black_heading,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
-                  children:[
-                    const TextSpan(text:'Hello \nThere'),
-                    TextSpan(text:' .',style:TextStyle(color: secondary_color,fontWeight: FontWeight.w900)),
-                  ]
-              )
-              ),
-              const SizedBox(height: 10.0),
-              Text("Sign In and start saving",style:TextStyle(fontSize:18.0,letterSpacing:2.0,color: secondary_color,fontWeight: FontWeight.w900)),
               const SizedBox(height: 35.0),
-              const Text("Email",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
+              RichText(
+                  text: TextSpan(
+                      style: TextStyle(
+                          fontSize: 58,
+                          color: black_heading,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'Poppins'),
+                      children: [
+                    const TextSpan(text: 'Hello \nThere'),
+                    TextSpan(
+                        text: ' .',
+                        style: TextStyle(
+                            color: secondary_color,
+                            fontWeight: FontWeight.w900)),
+                  ])),
+              const SizedBox(height: 10.0),
+              Text("Sign In and start saving",
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      letterSpacing: 2.0,
+                      color: secondary_color,
+                      fontWeight: FontWeight.w900)),
+              const SizedBox(height: 35.0),
+              const Text("Email",
+                  style:
+                      TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900)),
               const SizedBox(height: 15.0),
               TextField(
                 controller: _emailController,
@@ -56,13 +69,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   filled: true,
                   fillColor: textField_fill_color,
                   contentPadding: const EdgeInsets.only(left: 10.0),
-                  enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
-                  focusedBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: textField_fill_color),
+                      borderRadius: BorderRadius.circular(12.0)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: textField_fill_color),
+                      borderRadius: BorderRadius.circular(12.0)),
                   hintText: "Enter Email",
                 ),
               ),
               const SizedBox(height: 25.0),
-              const Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
+              const Text("Password",
+                  style:
+                      TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900)),
               const SizedBox(height: 15.0),
               TextField(
                 controller: _passwordController,
@@ -72,23 +91,38 @@ class _LoginScreenState extends State<LoginScreen> {
                   contentPadding: const EdgeInsets.only(left: 10.0),
                   filled: true,
                   fillColor: textField_fill_color,
-                  enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
-                  focusedBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: textField_fill_color),
+                      borderRadius: BorderRadius.circular(12.0)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: textField_fill_color),
+                      borderRadius: BorderRadius.circular(12.0)),
                   hintText: "Enter Password",
                 ),
               ),
               const SizedBox(height: 35.0),
-              // ignore: deprecated_member_use
-              FlatButton(
-                onPressed: (){},
-                color: secondary_color,
-                padding: const EdgeInsets.all(14.0),
-                minWidth: MediaQuery.of(context).size.width,
-                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(15.0)),
-                child: Text("LOGIN",style:TextStyle(fontSize:16.0,fontWeight: FontWeight.w900,color: primary_color)),
+              TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondary_color,
+                  minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                  padding: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+                child: Text("LOGIN",
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w900,
+                        color: primary_color)),
               ),
               const SizedBox(height: 15.0),
-              const Center(child: Text("OR",style: TextStyle(fontSize:18.0,fontWeight: FontWeight.w900),)),
+              const Center(
+                child: Text(
+                  "OR",
+                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w900),
+                ),
+              ),
               Center(
                 // ignore: avoid_unnecessary_containers
                 child: Container(
@@ -96,27 +130,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                          onPressed:(){
-                            signInWithGoogle().then(
-                                  (result) {
-                                if (result != null) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return HomeScreen();
-                                      },
-                                    ),
-                                  );
-                                }
-                              },
-                            );
-                          },
-                          icon:FaIcon(FontAwesomeIcons.google,size: 30.0,color: black_heading),
+                        onPressed: () {
+                          signInWithGoogle().then(
+                            (result) {
+                              if (result != null) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return HomeScreen();
+                                    },
+                                  ),
+                                );
+                              }
+                            },
+                          );
+                        },
+                        icon: FaIcon(FontAwesomeIcons.google,
+                            size: 30.0, color: black_heading),
                       ),
                       const SizedBox(width: 45.0),
                       IconButton(
-                          onPressed:(){},
-                          icon:FaIcon(FontAwesomeIcons.facebook,size: 30.0,color: black_heading),
+                        onPressed: () {},
+                        icon: FaIcon(FontAwesomeIcons.facebook,
+                            size: 30.0, color: black_heading),
                       )
                     ],
                   ),
@@ -126,16 +162,21 @@ class _LoginScreenState extends State<LoginScreen> {
               Center(
                 child: RichText(
                   text: TextSpan(
-                      style:TextStyle(fontSize:16.0,color:secondary_color,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: secondary_color,
+                          fontWeight: FontWeight.w900,
+                          fontFamily: 'Poppins'),
                       children: [
-                        const TextSpan(text:"Don't have an account? "),
+                        const TextSpan(text: "Don't have an account? "),
                         TextSpan(
                             text: "Create one!",
-                            recognizer:TapGestureRecognizer()..onTap = goToSignUpScreen,
-                            style: const TextStyle(decoration: TextDecoration.underline,)
-                        )
-                      ]
-                  ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = goToSignUpScreen,
+                            style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                            ))
+                      ]),
                 ),
               )
             ],
@@ -144,8 +185,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  void goToSignUpScreen(){
+
+  void goToSignUpScreen() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SignUpScreen();}));
+      return SignUpScreen();
+    }));
   }
 }
