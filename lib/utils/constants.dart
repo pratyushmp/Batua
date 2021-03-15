@@ -8,3 +8,23 @@ Color secondary_color = const Color(0xFF4731ee);
 Color text_accent_primary = const Color(0xFF8E94AD);
 // ignore: non_constant_identifier_names
 Color text_accent_secondary = const Color(0xFFDBDEEB);
+// ignore: non_constant_identifier_names
+Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
+// ignore: non_constant_identifier_names
+Color textField_color = Colors.grey.withOpacity(0.10);
+
+InputDecoration inputDecoration = InputDecoration(
+  hintStyle: const TextStyle(
+    color: Color(0x42000000),
+  ),
+  fillColor: textField_color,
+  filled: true,
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: textField_color),
+    borderRadius: BorderRadius.circular(20.0),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: textField_color2),
+    borderRadius: BorderRadius.circular(20.0),
+  ),
+);
