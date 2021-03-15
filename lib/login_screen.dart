@@ -143,6 +143,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               error =
                                   'Could not sign in with those credentials';
                             });
+                          }else {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return HomeScreen();
+                                },
+                              ),
+                            );
                           }
                         }
                       },
