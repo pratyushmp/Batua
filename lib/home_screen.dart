@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'authentication_service.dart';
 import 'google_signin.dart';
 import 'login_screen.dart';
 
@@ -19,14 +21,17 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.logout,
               color: Colors.black,
             ),
-            onPressed: () => signOutGoogle().then(
-                  (res) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                        (Route<dynamic> route) => false);
-              },
-            ),
+            onPressed: () {
+              context.read<AuthenticationService>().signOut();
+              signOutGoogle().then(
+                (res) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (Route<dynamic> route) => false);
+                },
+              );
+            },
           )
         ],
       ),

@@ -27,6 +27,8 @@ dependencies:
   firebase_core:
   firebase_auth:
   google_sign_in:
+  flutter_spinkit:
+  provider:
   lint: ^1.5.3
 
 

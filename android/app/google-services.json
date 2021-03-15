@@ -14,14 +14,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "214453118909-4pfc04kv09u5f6arrsp2dkfeg8fv3kv1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.batua",
-            "certificate_hash": "2a12d2939154d680c5c9cc73036c740d4a459d3e"
-          }
-        },
-        {
           "client_id": "214453118909-vli4p4uppsbf2c4d7bcjf81o6egm4das.apps.googleusercontent.com",
           "client_type": 3
         }
