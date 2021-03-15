@@ -202,25 +202,24 @@ class SignUpScreenState extends State<SignUpScreen>{
             child: Container(
               height: MediaQuery.of(context).size.height*0.065,
               // ignore: deprecated_member_use
-              child: RaisedButton(
-                onPressed: (){
-                  setState(() {
-                      debugPrint("Sign up");
-                  });
-                },
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20))
+              child:  TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  primary: primary_color,
+                  backgroundColor: secondary_color,
+                  minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                  padding: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
                 ),
-                color: secondary_color,
-                child: Text('Sign Up', style: TextStyle(
-                  fontSize: 20,
-                  color: primary_color,
-                ),),
-
-
-              )
-            ),
-          ),
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),),),
 
         ],
       ),

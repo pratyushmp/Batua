@@ -78,14 +78,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 35.0),
-              // ignore: deprecated_member_use
-              FlatButton(
-                onPressed: (){},
-                color: secondary_color,
-                padding: const EdgeInsets.all(14.0),
-                minWidth: MediaQuery.of(context).size.width,
-                shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(15.0)),
-                child: Text("LOGIN",style:TextStyle(fontSize:16.0,fontWeight: FontWeight.w900,color: primary_color)),
+             TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondary_color,
+                  minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                  padding: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+                child: Text("LOGIN",
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w900,
+                        color: primary_color)),
               ),
               const SizedBox(height: 15.0),
               const Center(child: Text("OR",style: TextStyle(fontSize:18.0,fontWeight: FontWeight.w900),)),
