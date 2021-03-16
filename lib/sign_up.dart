@@ -219,53 +219,36 @@ class SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20.0, right: 20, bottom: 4),
-                  child: Text(
-                    error,
-                    style: const TextStyle(color: Colors.red, fontSize: 14.0),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  // ignore: sized_box_for_whitespace
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.065,
-                    // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      onPressed: () async {
-                        if (_formkey.currentState.validate()) {
-                          setState(() => load = true);
-                          dynamic result =
-                              await _auth.registerWithEmailAndPassword(
-                                  _emailController.text,
-                                  _passwordController.text);
-                          if (result != null) {
-                            Navigator.of(context).pop();
-                          } else {
-                            setState(() {
-                              load = false;
-                              error = 'Please supply a valid email';
-                            });
-                          }
-                        }
-                      },
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      color: secondary_color,
-                      child: Text(
-                        'Sign Up',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: primary_color,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          );
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left:20.0,right: 20,top: 20),
+            // ignore: sized_box_for_whitespace
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.065,
+              // ignore: deprecated_member_use
+              child:  TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  primary: primary_color,
+                  backgroundColor: secondary_color,
+                  minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                  padding: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+                child: const Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ),),),
+
+        ],
+      ),
+    );
   }
 }

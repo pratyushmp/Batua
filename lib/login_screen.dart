@@ -32,160 +32,84 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return load
-        ? Loading()
-        : Scaffold(
-            backgroundColor: primary_color,
-            body: SingleChildScrollView(
-              child: SafeArea(
-                minimum: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 35.0),
-                    RichText(
-                        text: TextSpan(
-                            style: TextStyle(
-                                fontSize: 58,
-                                color: black_heading,
-                                fontWeight: FontWeight.w900,
-                                fontFamily: 'Poppins'),
-                            children: [
-                          const TextSpan(text: 'Hello \nThere'),
-                          TextSpan(
-                              text: ' .',
-                              style: TextStyle(
-                                  color: secondary_color,
-                                  fontWeight: FontWeight.w900)),
-                        ])),
-                    const SizedBox(height: 10.0),
-                    Text("Sign In and start saving",
-                        style: TextStyle(
-                            fontSize: 18.0,
-                            letterSpacing: 2.0,
-                            color: secondary_color,
-                            fontWeight: FontWeight.w900)),
-                    const SizedBox(height: 35.0),
+    return Scaffold(
+      backgroundColor: primary_color,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          minimum: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height:35.0),
+              RichText(text: TextSpan(
+                  style: TextStyle(fontSize: 58,color: black_heading,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
+                  children:[
+                    const TextSpan(text:'Hello \nThere'),
+                    TextSpan(text:' .',style:TextStyle(color: secondary_color,fontWeight: FontWeight.w900)),
+                  ]
+              )
+              ),
+              const SizedBox(height: 10.0),
+              Text("Sign In and start saving",style:TextStyle(fontSize:18.0,letterSpacing:2.0,color: secondary_color,fontWeight: FontWeight.w900)),
+              const SizedBox(height: 35.0),
+              const Text("Email",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
+              const SizedBox(height: 15.0),
+              TextField(
+                controller: _emailController,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: textField_fill_color,
+                  contentPadding: const EdgeInsets.only(left: 10.0),
+                  enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  focusedBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  hintText: "Enter Email",
+                ),
+              ),
+              const SizedBox(height: 25.0),
+              const Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
+              const SizedBox(height: 15.0),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                textInputAction: TextInputAction.done,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.only(left: 10.0),
+                  filled: true,
+                  fillColor: textField_fill_color,
+                  enabledBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  focusedBorder: OutlineInputBorder(borderSide:BorderSide(color: textField_fill_color),borderRadius: BorderRadius.circular(12.0)),
+                  hintText: "Enter Password",
+                ),
+              ),
+              const SizedBox(height: 35.0),
+             TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: secondary_color,
+                  minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                  padding: const EdgeInsets.all(14.0),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
+                ),
+                child: Text("LOGIN",
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w900,
+                        color: primary_color)),
+              ),
+              const SizedBox(height: 15.0),
+              const Center(child: Text("OR",style: TextStyle(fontSize:18.0,fontWeight: FontWeight.w900),)),
+              Center(
+                // ignore: avoid_unnecessary_containers
+                child: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                          onPressed:(){
+                            signInWithGoogle().then(
 
-                    Form(
-                      key: _formkey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text("Email",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w900)),
-                          const SizedBox(height: 15.0),
-                          TextFormField(
-                            controller: _emailController,
-                            validator: (val) =>
-                                val.isEmpty ? 'Enter an email' : null,
-                            textInputAction: TextInputAction.next,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: textField_fill_color,
-                              contentPadding: const EdgeInsets.only(left: 10.0),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: textField_fill_color),
-                                  borderRadius: BorderRadius.circular(12.0)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: textField_fill_color),
-                                  borderRadius: BorderRadius.circular(12.0)),
-                              hintText: "Enter Email",
-                            ),
-                          ),
-                          const SizedBox(height: 25.0),
-                          const Text("Password",
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w900)),
-                          const SizedBox(height: 15.0),
-                          TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            textInputAction: TextInputAction.done,
-                            validator: (val) => val.length < 6
-                                ? 'Enter a password 6+ chars long'
-                                : null,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(left: 10.0),
-                              filled: true,
-                              fillColor: textField_fill_color,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: textField_fill_color),
-                                  borderRadius: BorderRadius.circular(12.0)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: textField_fill_color),
-                                  borderRadius: BorderRadius.circular(12.0)),
-                              hintText: "Enter Password",
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 35.0),
-                    // ignore: deprecated_member_use
-                    FlatButton(
-                      onPressed: () async {
-                        if (_formkey.currentState.validate()) {
-                          setState(() => load = true);
-                          dynamic result =
-                              await _auth.signInWithEmailAndPassword(
-                                  _emailController.text,
-                                  _passwordController.text);
-
-                          if (result == null) {
-                            setState(() {
-                              load = false;
-                              error =
-                                  'Could not sign in with those credentials';
-                            });
-                          }else {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return HomeScreen();
-                                },
-                              ),
-                            );
-                          }
-                        }
-                      },
-                      color: secondary_color,
-                      padding: const EdgeInsets.all(14.0),
-                      minWidth: MediaQuery.of(context).size.width,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0)),
-                      child: Text("LOGIN",
-                          style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w900,
-                              color: primary_color)),
-                    ),
-                    const SizedBox(height: 12.0),
-                    Text(
-                      error,
-                      style: const TextStyle(color: Colors.red, fontSize: 14.0),
-                    ),
-                    const SizedBox(height: 15.0),
-                    const Center(
-                        child: Text(
-                      "OR",
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.w900),
-                    )),
-                    Center(
-                      // ignore: avoid_unnecessary_containers
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                signInWithGoogle().then(
                                   (result) {
                                     if (result != null) {
                                       Navigator.of(context).pushReplacement(
