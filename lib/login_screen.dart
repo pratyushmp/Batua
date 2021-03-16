@@ -1,29 +1,34 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'authentication_service.dart';
 import 'google_signin.dart';
 import 'home_screen.dart';
-//files
+import 'loading.dart';
 import 'sign_up.dart';
 import 'utils/constants.dart';
 
-class LoginScreen extends StatefulWidget{
+class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   //Text Editing controllers
-  final TextEditingController _emailController=TextEditingController();
-  final TextEditingController _passwordController=TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
+  final AuthenticationService _auth =
+      AuthenticationService(FirebaseAuth.instance);
 
+  String error = '';
+  bool load = false;
   //Colors
   // ignore: non_constant_identifier_names
   Color textField_fill_color = const Color(0xFFEBEBEB);
   // ignore: non_constant_identifier_names
-  Color black_heading=const Color(0xFF000000);
+  Color black_heading = const Color(0xFF000000);
 
   @override
   Widget build(BuildContext context) {
@@ -104,54 +109,64 @@ class _LoginScreenState extends State<LoginScreen> {
                       IconButton(
                           onPressed:(){
                             signInWithGoogle().then(
+
                                   (result) {
-                                if (result != null) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return HomeScreen();
-                                      },
-                                    ),
-                                  );
-                                }
+                                    if (result != null) {
+                                      Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return HomeScreen();
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  },
+                                );
                               },
-                            );
-                          },
-                          icon:FaIcon(FontAwesomeIcons.google,size: 30.0,color: black_heading),
+                              icon: FaIcon(FontAwesomeIcons.google,
+                                  size: 30.0, color: black_heading),
+                            ),
+                            const SizedBox(width: 45.0),
+                            IconButton(
+                              onPressed: () {},
+                              icon: FaIcon(FontAwesomeIcons.facebook,
+                                  size: 30.0, color: black_heading),
+                            )
+                          ],
+                        ),
                       ),
-                      const SizedBox(width: 45.0),
-                      IconButton(
-                          onPressed:(){},
-                          icon:FaIcon(FontAwesomeIcons.facebook,size: 30.0,color: black_heading),
-                      )
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                color: secondary_color,
+                                fontWeight: FontWeight.w900,
+                                fontFamily: 'Poppins'),
+                            children: [
+                              const TextSpan(text: "Don't have an account? "),
+                              TextSpan(
+                                  text: "Create one!",
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = goToSignUpScreen,
+                                  style: const TextStyle(
+                                    decoration: TextDecoration.underline,
+                                  ))
+                            ]),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(height: 10.0),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                      style:TextStyle(fontSize:16.0,color:secondary_color,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
-                      children: [
-                        const TextSpan(text:"Don't have an account? "),
-                        TextSpan(
-                            text: "Create one!",
-                            recognizer:TapGestureRecognizer()..onTap = goToSignUpScreen,
-                            style: const TextStyle(decoration: TextDecoration.underline,)
-                        )
-                      ]
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
-  void goToSignUpScreen(){
+
+  void goToSignUpScreen() {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SignUpScreen();}));
+      return SignUpScreen();
+    }));
   }
 }
