@@ -29,7 +29,7 @@ dependencies:
   google_sign_in:
   flutter_spinkit:
   provider:
-  lint: ^1.5.3
+  #lint: ^1.5.3
 
 
 
