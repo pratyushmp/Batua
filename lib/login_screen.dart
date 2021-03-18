@@ -40,20 +40,20 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height:35.0),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               RichText(text: TextSpan(
-                  style: TextStyle(fontSize: 58,color: black_heading,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
+                  style: TextStyle(fontSize: 58,height: 1.3 ,color: black_heading,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),
                   children:[
                     const TextSpan(text:'Hello \nThere'),
                     TextSpan(text:' .',style:TextStyle(color: secondary_color,fontWeight: FontWeight.w900)),
                   ]
               )
               ),
-              const SizedBox(height: 10.0),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.009),
               Text("Sign In and start saving",style:TextStyle(fontSize:18.0,letterSpacing:2.0,color: secondary_color,fontWeight: FontWeight.w900)),
-              const SizedBox(height: 35.0),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               const Text("Email",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
-              const SizedBox(height: 15.0),
+              const SizedBox(height: 10.0),
               TextField(
                 controller: _emailController,
                 textInputAction: TextInputAction.next,
@@ -66,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: "Enter Email",
                 ),
               ),
-              const SizedBox(height: 25.0),
-              const Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
               const SizedBox(height: 15.0),
+              const Text("Password",style:TextStyle(fontSize:18.0,fontWeight: FontWeight.w900)),
+              const SizedBox(height: 10.0),
               TextField(
                 controller: _passwordController,
                 obscureText: true,
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: "Enter Password",
                 ),
               ),
-              const SizedBox(height: 35.0),
+              const SizedBox(height: 20.0),
              TextButton(
                 onPressed: () {},
                 style: TextButton.styleFrom(
