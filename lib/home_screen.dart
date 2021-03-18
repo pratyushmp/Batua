@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
             ),
-<<<<<<< HEAD
             isScrollControlled: true,
           );
         },
@@ -283,21 +282,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-=======
-            onPressed: () {
-              context.read<AuthenticationService>().signOut();
-              signOutGoogle().then(
-                (res) {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                      (Route<dynamic> route) => false);
-                },
-              );
-            },
-          )
-        ],
->>>>>>> bc2e95e6cb9eb8776cad0deccaa04422a980ea27
       ),
     );
   }
