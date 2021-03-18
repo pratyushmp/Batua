@@ -220,17 +220,19 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left:20.0,right: 20,top: 20,bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20.0, right: 20, top: 20, bottom: 20),
                   // ignore: sized_box_for_whitespace
                   child: Container(
-                    height: MediaQuery.of(context).size.height*0.085,
+                    height: MediaQuery.of(context).size.height * 0.085,
                     // ignore: deprecated_member_use
-                    child:  TextButton(
+                    child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         primary: primary_color,
                         backgroundColor: secondary_color,
-                        minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width - 20, 40),
                         padding: const EdgeInsets.all(14.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0)),
@@ -242,37 +244,39 @@ class SignUpScreenState extends State<SignUpScreen> {
                           fontWeight: FontWeight.w900,
                         ),
                       ),
-                    ),),),
-              ]
-              ),
-            );
-      //     Padding(
-      //       padding: const EdgeInsets.only(left:20.0,right: 20,top: 20),
-      //       // ignore: sized_box_for_whitespace
-      //       child: Container(
-      //         height: MediaQuery.of(context).size.height*0.065,
-      //         // ignore: deprecated_member_use
-      //         child:  TextButton(
-      //           onPressed: () {},
-      //           style: TextButton.styleFrom(
-      //             primary: primary_color,
-      //             backgroundColor: secondary_color,
-      //             minimumSize: Size(MediaQuery.of(context).size.width - 20, 40),
-      //             padding: const EdgeInsets.all(14.0),
-      //             shape: RoundedRectangleBorder(
-      //                 borderRadius: BorderRadius.circular(15.0)),
-      //           ),
-      //           child: const Text(
-      //             'Sign Up',
-      //             style: TextStyle(
-      //               fontSize: 16.0,
-      //               fontWeight: FontWeight.w900,
-      //             ),
-      //           ),
-      //         ),),),
-      //
-      //   ],
-      // ),
-    // );
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 20.0, right: 20, top: 20),
+                  // ignore: sized_box_for_whitespace
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.065,
+                    // ignore: deprecated_member_use
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        primary: primary_color,
+                        backgroundColor: secondary_color,
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width - 20, 40),
+                        padding: const EdgeInsets.all(14.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0)),
+                      ),
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
   }
 }
