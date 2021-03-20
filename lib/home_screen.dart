@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AuthenticationService _auth = AuthenticationService();
   int activeIndex = 0;
   final iconList = <IconData>[
     Icons.access_time_rounded,
@@ -124,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     radius: 30,
                     backgroundColor: Colors.blue,
                   ),
+                  
                 ],
               ),
             ),

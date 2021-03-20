@@ -1,3 +1,4 @@
+import 'package:batua/home_screen.dart';
 import 'package:batua/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart';
@@ -12,20 +13,22 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class SignUpScreenState extends State<SignUpScreen> {
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  final AuthenticationService _auth =
-      AuthenticationService(FirebaseAuth.instance);
   final _formkey = GlobalKey<FormState>();
-  String error = '';
-  String password = '';
+  String _error = '';
+  String _password ='';
   bool load = false;
+  String _email = '';
   // ignore: non_constant_identifier_names
   static Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
   // ignore: non_constant_identifier_names
   static Color textField_color = Colors.grey.withOpacity(0.10);
+
+  final AuthenticationService _auth = AuthenticationService();
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +114,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: MediaQuery.of(context).size.height * 0.065,
                           child: TextFormField(
                             controller: _emailController,
-                            //onChanged: (value) { setState(() => email = value);},
+                            onChanged: (value) { setState(() => _email = value);},
                             validator: (value) =>
                                 value.isEmpty ? 'Enter an Email' : null,
                             decoration: InputDecoration(
@@ -156,7 +159,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                 ? 'Enter a password 6+ chars long'
                                 : null,
                             onChanged: (value) {
-                              setState(() => password = value);
+                              setState(() => _password = value);
                             },
                             decoration: InputDecoration(
                                 hintText: 'Enter Password',
@@ -196,7 +199,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           height: MediaQuery.of(context).size.height * 0.065,
                           child: TextFormField(
                             controller: _confirmPasswordController,
-                            validator: (val) => val != password
+                            validator: (val) => val != _password
                                 ? 'Password does not match'
                                 : null,
                             onChanged: (value) {},
@@ -226,7 +229,15 @@ class SignUpScreenState extends State<SignUpScreen> {
                     height: MediaQuery.of(context).size.height*0.085,
                     // ignore: deprecated_member_use
                     child:  TextButton(
-                      onPressed: () {},
+                      onPressed: ()async{
+                        if (_formkey.currentState.validate()){
+              
+              dynamic result = await _auth.registerWithEmailAndPassword(_email, _password);
+              if(result != null){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+              }              
+                  }
+                      },
                       style: TextButton.styleFrom(
                         primary: primary_color,
                         backgroundColor: secondary_color,
