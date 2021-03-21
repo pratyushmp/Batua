@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                SizedBox(height: 70),
                 RichText(
                     text: TextSpan(
                         style: TextStyle(
