@@ -1,5 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:batua/utils/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'authentication_service.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Icons.person,
   ];
   String amount = "30.500";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +77,25 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             const SizedBox(
-              height: 70,
+              height: 20,
+            ),
+            Container(
+              //color: Colors.red,
+              alignment: Alignment.centerRight,
+              child: IconButton(
+                icon: Icon(
+                  Icons.exit_to_app_sharp,
+                  size: 30.0,
+                  color: Colors.red,
+                ),
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      (route) => false);
+                },
+              ),
             ),
             // ignore: avoid_unnecessary_containers
             Container(
@@ -125,7 +145,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     radius: 30,
                     backgroundColor: Colors.blue,
                   ),
-                  
                 ],
               ),
             ),
@@ -258,6 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       value: val,
                                       min: 0,
                                       max: max,
+                                      onChanged: (value) {},
                                     ),
                                     data: SliderTheme.of(context).copyWith(
                                         activeTrackColor: secondary_color,
