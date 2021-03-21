@@ -250,7 +250,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   content: Text(
-                                    "Verification Link Send to Your Registered Mail\nPlease Verify and Log-In",
+                                    "Verification Link Sent to Your Registered Mail\nPlease Verify and Log-In",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 );
