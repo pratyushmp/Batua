@@ -39,7 +39,24 @@ class SignUpScreenState extends State<SignUpScreen> {
         : Scaffold(
             body: ListView(children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.07,
+                height: MediaQuery.of(context).size.height * 0.003,
+              ),
+              Row(
+                children: [
+                  IconButton(
+                      icon: Icon(Icons.arrow_back,
+                        color: Colors.black,
+                        size: 35,
+                      ),
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      }
+                  ),
+                ],
+
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.000,
               ),
               Stack(
                 children: [
