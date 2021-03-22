@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:batua/facebook_auth.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final AuthenticationService _auth = AuthenticationService();
+  final AuthService auth = new AuthService();
   int activeIndex = 0;
   final iconList = <IconData>[
     Icons.access_time_rounded,
@@ -88,8 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 30.0,
                   color: Colors.red,
                 ),
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  await auth.signOutFB();
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (context) => LoginScreen()),

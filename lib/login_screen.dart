@@ -1,3 +1,4 @@
+import 'package:batua/facebook_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
   final AuthenticationService _auth = AuthenticationService();
+  final AuthService auth = new AuthService();
 
   String _email = '';
   String _password = '';
@@ -225,7 +227,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(width: 45.0),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await auth.signInWithFacebook().then(
+                                  (result) async {
+                                if (result != null) {
+                                    Navigator.pushAndRemoveUntil(context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return HomeScreen();
+                                          },
+                                        ), (route) => false);
+
+                                }
+                              },
+                            );
+
+                          },
                           icon: FaIcon(FontAwesomeIcons.facebook,
                               size: 30.0, color: black_heading),
                         )
