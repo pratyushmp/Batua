@@ -156,6 +156,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.065,
                         child: TextFormField(
+                          obscureText: true,
                           controller: _passwordController,
                           validator: (val) => val.length < 6
                               ? 'Enter a password 6+ chars long'
@@ -199,6 +200,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.065,
                         child: TextFormField(
+                          obscureText: true,
                           controller: _confirmPasswordController,
                           validator: (val) => val != _password
                               ? 'Password does not match'
