@@ -119,7 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     suffixIcon: InkWell(
                       onTap: _togglePassword,
                       child: Icon(
-                          _isHidden ? Icons.visibility_off : Icons.visibility),
+                        _isHidden ? Icons.visibility_off : Icons.visibility,
+                        color: secondary_color,
+                      ),
                     ),
                   ),
                 ),
