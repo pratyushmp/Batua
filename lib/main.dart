@@ -1,8 +1,9 @@
-import 'package:batua/authentication_service.dart';
+import 'package:batua/Screens/auth_wrapper.dart';
+import 'package:batua/Services/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'auth_wrapper.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,4 +1,4 @@
-import 'package:batua/home_screen.dart';
+import 'package:batua/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart' as constants;
 

@@ -1,10 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'authentication_service.dart';
-import 'google_signin.dart';
-import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,7 +8,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final AuthenticationService _auth = AuthenticationService();
+  
   int activeIndex = 0;
   final iconList = <IconData>[
     Icons.access_time_rounded,
