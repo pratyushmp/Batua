@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password = '';
   String error = '';
   bool load = false;
-
+  bool _isHidden = true;
   //Colors
   // ignore: non_constant_identifier_names
   Color textField_fill_color = const Color(0xFFEBEBEB);
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() => _password = value);
                   },
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: _isHidden,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(left: 10.0),
@@ -116,6 +116,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide(color: textField_fill_color),
                         borderRadius: BorderRadius.circular(12.0)),
                     hintText: "Enter Password",
+                    suffixIcon: InkWell(
+                      onTap: _togglePassword,
+                      child: Icon(
+                        _isHidden ? Icons.visibility_off : Icons.visibility,
+                        color: secondary_color,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20.0),
@@ -229,19 +236,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         IconButton(
                           onPressed: () async {
                             await auth.signInWithFacebook().then(
-                                  (result) async {
+                              (result) async {
                                 if (result != null) {
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return HomeScreen();
-                                          },
-                                        ), (route) => false);
-
+                                  Navigator.pushAndRemoveUntil(context,
+                                      MaterialPageRoute(
+                                    builder: (context) {
+                                      return HomeScreen();
+                                    },
+                                  ), (route) => false);
                                 }
                               },
                             );
-
                           },
                           icon: FaIcon(FontAwesomeIcons.facebook,
                               size: 30.0, color: black_heading),
@@ -283,5 +288,11 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return SignUpScreen();
     }));
+  }
+
+  void _togglePassword() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }
