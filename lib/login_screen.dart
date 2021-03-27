@@ -133,10 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           _email, _password);
                       print(result);
                       if (result == true) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                        Navigator.of(context).pushNamed(
+                          RouteConstants.HOME_SCREEN,
+                        );
                         showDialog(
                             context: context,
                             builder: (context) {
@@ -218,12 +217,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             signInWithGoogle().then(
                               (result) {
                                 if (result != null) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return HomeScreen();
-                                      },
-                                    ),
+                                  Navigator.of(context).pushReplacementNamed(
+                                    RouteConstants.HOME_SCREEN,
                                   );
                                 }
                               },
@@ -238,12 +233,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             await auth.signInWithFacebook().then(
                               (result) async {
                                 if (result != null) {
-                                  Navigator.pushAndRemoveUntil(context,
-                                      MaterialPageRoute(
-                                    builder: (context) {
-                                      return HomeScreen();
-                                    },
-                                  ), (route) => false);
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                    RouteConstants.HOME_SCREEN,
+                                    (route) => false,
+                                  );
                                 }
                               },
                             );
@@ -285,9 +278,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void goToSignUpScreen() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SignUpScreen();
-    }));
+    Navigator.of(context).pushNamed(
+      RouteConstants.SIGNUP_SCREEN,
+    );
   }
 
   void _togglePassword() {
