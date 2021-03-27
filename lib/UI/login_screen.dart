@@ -1,13 +1,12 @@
-import 'package:batua/Screens/home_screen.dart';
-import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/Services/facebook_auth.dart';
-import 'package:batua/Services/google_signin.dart';
-import 'package:batua/utils/constants.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../Services/authentication_service.dart';
+import '../Services/google_signin.dart';
+import 'home_screen.dart';
 import 'sign_up.dart';
-
+import '../utils/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -26,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password = '';
   String error = '';
   bool load = false;
-
+  bool _isHidden = true;
   //Colors
   // ignore: non_constant_identifier_names
   Color textField_fill_color = const Color(0xFFEBEBEB);
@@ -104,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     setState(() => _password = value);
                   },
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: _isHidden,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(left: 10.0),
@@ -117,6 +116,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderSide: BorderSide(color: textField_fill_color),
                         borderRadius: BorderRadius.circular(12.0)),
                     hintText: "Enter Password",
+                    suffixIcon: InkWell(
+                      onTap: _togglePassword,
+                      child: Icon(
+                        _isHidden ? Icons.visibility_off : Icons.visibility,
+                        color: secondary_color,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20.0),
@@ -127,10 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           _email, _password);
                       print(result);
                       if (result == true) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()));
+                        Navigator.of(context).pushNamed(
+                          RouteConstants.HOME_SCREEN,
+                        );
                         showDialog(
                             context: context,
                             builder: (context) {
@@ -212,12 +217,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             signInWithGoogle().then(
                               (result) {
                                 if (result != null) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return HomeScreen();
-                                      },
-                                    ),
+                                  Navigator.of(context).pushReplacementNamed(
+                                    RouteConstants.HOME_SCREEN,
                                   );
                                 }
                               },
@@ -230,19 +231,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         IconButton(
                           onPressed: () async {
                             await auth.signInWithFacebook().then(
-                                  (result) async {
+                              (result) async {
                                 if (result != null) {
-                                    Navigator.pushAndRemoveUntil(context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return HomeScreen();
-                                          },
-                                        ), (route) => false);
-
+                                  Navigator.of(context).pushNamedAndRemoveUntil(
+                                    RouteConstants.HOME_SCREEN,
+                                    (route) => false,
+                                  );
                                 }
                               },
                             );
-
                           },
                           icon: FaIcon(FontAwesomeIcons.facebook,
                               size: 30.0, color: black_heading),
@@ -281,8 +278,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void goToSignUpScreen() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SignUpScreen();
-    }));
+    Navigator.of(context).pushNamed(
+      RouteConstants.SIGNUP_SCREEN,
+    );
+  }
+
+  void _togglePassword() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }

@@ -1,9 +1,10 @@
-import 'package:batua/Screens/login_screen.dart';
-import 'package:batua/Services/authentication_service.dart';
+import 'package:batua/UI/home_screen.dart';
+import 'package:batua/UI/loading.dart';
+import 'package:batua/UI/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart';
-
-
+import 'package:firebase_auth/firebase_auth.dart';
+import '../Services/authentication_service.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class SignUpScreenState extends State<SignUpScreen> {
   String _password = '';
   bool load = false;
   String _email = '';
+  bool ishidden = true;
+  bool ishidden_ = true;
 
   // ignore: non_constant_identifier_names
   static Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
@@ -33,7 +36,9 @@ class SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return load
+        ? Loading()
+        : Scaffold(
             body: ListView(children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.003,
@@ -41,16 +46,15 @@ class SignUpScreenState extends State<SignUpScreen> {
               Row(
                 children: [
                   IconButton(
-                      icon: Icon(Icons.arrow_back,
+                      icon: Icon(
+                        Icons.arrow_back,
                         color: Colors.black,
                         size: 35,
                       ),
-                      onPressed: (){
+                      onPressed: () {
                         Navigator.of(context).pop();
-                      }
-                  ),
+                      }),
                 ],
-
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.000,
@@ -170,7 +174,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.065,
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: ishidden,
                           controller: _passwordController,
                           validator: (val) => val.length < 6
                               ? 'Enter a password 6+ chars long'
@@ -179,6 +183,19 @@ class SignUpScreenState extends State<SignUpScreen> {
                             setState(() => _password = value);
                           },
                           decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    ishidden = !ishidden;
+                                  });
+                                },
+                                child: Icon(
+                                  ishidden
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: secondary_color,
+                                ),
+                              ),
                               hintText: 'Enter Password',
                               fillColor: textField_color,
                               filled: true,
@@ -214,13 +231,26 @@ class SignUpScreenState extends State<SignUpScreen> {
                       child: Container(
                         height: MediaQuery.of(context).size.height * 0.065,
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: ishidden_,
                           controller: _confirmPasswordController,
                           validator: (val) => val != _password
                               ? 'Password does not match'
                               : null,
                           onChanged: (value) {},
                           decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    ishidden_ = !ishidden_;
+                                  });
+                                },
+                                child: Icon(
+                                  ishidden_
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: secondary_color,
+                                ),
+                              ),
                               hintText: 'Confirm Password',
                               fillColor: textField_color,
                               filled: true,
@@ -251,11 +281,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                         dynamic result = await _auth
                             .registerWithEmailAndPassword(_email, _password);
                         if (result != null) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                              (route) => false);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteConstants.LOGIN_SCREEN,
+                            (route) => false,
+                          );
                           showDialog(
                               context: context,
                               builder: (context) {
@@ -339,5 +368,11 @@ class SignUpScreenState extends State<SignUpScreen> {
     //   ],
     // ),
     // );
+  }
+
+  void _togglepassword() {
+    setState(() {
+      ishidden = !ishidden;
+    });
   }
 }
