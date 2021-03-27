@@ -281,11 +281,10 @@ class SignUpScreenState extends State<SignUpScreen> {
                         dynamic result = await _auth
                             .registerWithEmailAndPassword(_email, _password);
                         if (result != null) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                              (route) => false);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteConstants.LOGIN_SCREEN,
+                            (route) => false,
+                          );
                           showDialog(
                               context: context,
                               builder: (context) {

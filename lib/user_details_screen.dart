@@ -1,4 +1,3 @@
-import 'package:batua/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart' as constants;
 
@@ -168,11 +167,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   print(_nameController.text);
                   print(_emailController.text);
                   print(_phoneController.text);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
+                  Navigator.of(context).pushNamed(
+                    constants.RouteConstants.HOME_SCREEN,
                   );
                 },
                 shape: const RoundedRectangleBorder(
