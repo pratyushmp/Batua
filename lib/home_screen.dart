@@ -93,10 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
                   await auth.signOutFB();
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                      (route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    RouteConstants.LOGIN_SCREEN,
+                    (route) => false,
+                  );
                 },
               ),
             ),
