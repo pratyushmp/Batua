@@ -28,3 +28,11 @@ InputDecoration inputDecoration = InputDecoration(
     borderRadius: BorderRadius.circular(20.0),
   ),
 );
+
+class RouteConstants {
+  static const LOGIN_SCREEN = '/login-screen';
+  static const USER_DETAIL_SCREEN = '/user-detail-screen';
+  static const SIGNUP_SCREEN = '/signup-screen';
+  static const HOME_SCREEN = '/home-screen';
+  static const AUTH_WRAPPER = '/auth-wrapper';
+}
