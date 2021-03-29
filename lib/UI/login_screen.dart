@@ -1,12 +1,12 @@
-import 'package:batua/facebook_auth.dart';
+import 'package:batua/Services/authentication_service.dart';
+import 'package:batua/Services/facebook_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'authentication_service.dart';
-import 'google_signin.dart';
+import '../Services/google_signin.dart';
 import 'home_screen.dart';
 import 'sign_up.dart';
-import 'utils/constants.dart';
+import '../utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginScreen extends StatefulWidget {
