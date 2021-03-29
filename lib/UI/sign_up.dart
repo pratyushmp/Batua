@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
