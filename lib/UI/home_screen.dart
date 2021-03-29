@@ -1,11 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:batua/facebook_auth.dart';
+import 'package:batua/Services/authentication_service.dart';
+import 'package:batua/Services/facebook_auth.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'authentication_service.dart';
-import 'google_signin.dart';
+import '../Services/google_signin.dart';
 import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
