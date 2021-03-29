@@ -1,10 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final databaseRef = FirebaseDatabase.instance.reference().child("Users");
 
   Stream<User> get authStateChanges => _firebaseAuth.authStateChanges();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void addData(String data) {
+    databaseRef.push().set({'email': data});
+  }
 
   Future<dynamic> signInWithEmailAndPassword(
       String email, String password) async {
@@ -25,11 +31,13 @@ class AuthenticationService {
   }
 
   Future<dynamic> registerWithEmailAndPassword(
+
       String email, String password) async {
     try {
+
       final User user = (await _auth.createUserWithEmailAndPassword(
-              email: email, password: password))
-          .user;
+              email: email, password: password)).user;
+      addData(user.email);
 
       // Email Verification Sending
       user.sendEmailVerification();
