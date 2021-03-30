@@ -1,3 +1,4 @@
+
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/Services/facebook_auth.dart';
@@ -90,7 +91,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
       body: tabs[activeIndex],
-    );
-  }
-}
+      );
 
+  }
+
+
+
+}
