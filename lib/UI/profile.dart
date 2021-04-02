@@ -46,7 +46,7 @@ Widget AppSettingsButton(){
                     fontSize: 18,
                     color: secondary_color
                   ),),
-                  SizedBox(width: 230,),
+                  SizedBox(width: 180,),
                   Icon(Icons.arrow_forward,color: secondary_color)
                 ],
               )
@@ -73,7 +73,7 @@ Widget HelpLegalButton(){
                     fontSize: 18,
                     color: secondary_color
                   ),),
-                  SizedBox(width: 230,),
+                  SizedBox(width: 180,),
                   Icon(Icons.arrow_forward,color: secondary_color,)
                 ],
               )
@@ -99,7 +99,7 @@ Widget SignoutButton(BuildContext ctx){
                       fontWeight: FontWeight.w900,
                       color: primary_color)),
           style: TextButton.styleFrom(
-                backgroundColor: Colors.blue[800],
+                backgroundColor: secondary_color,
                 minimumSize:
                     Size(MediaQuery.of(ctx).size.width - 50, 40),
                 padding: const EdgeInsets.all(14.0),
@@ -127,7 +127,7 @@ Widget EditProfile(){
                     fontSize: 18,
                     color: secondary_color
                   ),),
-                  SizedBox(width: 230,),
+                  SizedBox(width: 200,),
                   Icon(Icons.arrow_forward,color: secondary_color)
                 ],
               )
