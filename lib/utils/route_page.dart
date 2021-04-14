@@ -1,4 +1,5 @@
 import 'package:batua/Services/auth_wrapper.dart';
+import 'package:batua/UI/create_goal_page.dart';
 import 'package:batua/UI/home_screen.dart';
 import 'package:batua/UI/login_screen.dart';
 import 'package:batua/UI/sign_up.dart';
@@ -28,6 +29,10 @@ class RoutePage {
       case RouteConstants.AUTH_WRAPPER:
         return PageRouteBuilder(
           pageBuilder: (ctx, firstAni, secondAni) => AuthWrapper(),
+        );
+      case RouteConstants.createGoalPage:
+        return PageRouteBuilder(
+          pageBuilder: (ctx, firstAni, secondAni) => CreateGoalPage(),
         );
     }
   }

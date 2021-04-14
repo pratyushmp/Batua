@@ -9,7 +9,7 @@ class User {
 
   factory User.fromDocument(DocumentSnapshot doc) {
     return User(
-      email: doc['email'],
+      email: doc['email'] as String,
     );
   }
 }

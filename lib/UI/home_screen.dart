@@ -1,15 +1,10 @@
-
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/Services/facebook_auth.dart';
 import 'package:batua/UI/home_view.dart';
 import 'package:batua/UI/profile.dart';
 import 'package:batua/utils/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../Services/google_signin.dart';
-import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,9 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final AuthenticationService _auth = AuthenticationService();
-  final AuthService auth = new AuthService();
+  final AuthService auth = AuthService();
 
   int activeIndex = 0;
 
@@ -28,12 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Myprofile(),
   ];
 
-  final iconList = [
-    Icons.access_time_rounded,
-    Icons.person
-  ];
-  
-  
+  final iconList = [Icons.access_time_rounded, Icons.person];
 
   @override
   Widget build(BuildContext context) {
@@ -47,19 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 30.0,
         ),
         onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => SingleChildScrollView(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-            ),
-            isScrollControlled: true,
+          Navigator.of(context).pushNamed(
+            RouteConstants.createGoalPage,
           );
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-          
           height: 90,
           itemCount: iconList.length,
           tabBuilder: (int index, bool isActive) {
@@ -79,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             );
           },
-          
           backgroundColor: Colors.white,
           gapLocation: GapLocation.center,
           activeIndex: activeIndex,
@@ -88,13 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
               activeIndex = index;
             });
           }),
-
-
       body: tabs[activeIndex],
-      );
-
+    );
   }
-
-
-
 }
