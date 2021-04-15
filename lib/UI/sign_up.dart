@@ -1,10 +1,7 @@
 import 'package:batua/Services/authentication_service.dart';
-import 'package:batua/UI/home_screen.dart';
 import 'package:batua/UI/loading.dart';
-import 'package:batua/UI/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override

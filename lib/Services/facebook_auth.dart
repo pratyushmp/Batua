@@ -1,13 +1,7 @@
-import 'dart:convert' as JSON;
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-
-
-
-class AuthService{
-
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<UserCredential> signInWithFacebook() async {
@@ -16,10 +10,11 @@ class AuthService{
 
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
-    FacebookAuthProvider.credential(result.token);
+        FacebookAuthProvider.credential(result.accessToken.token);
 
     // Once signed in, return the UserCredential
-    final UserCredential authResult = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    final UserCredential authResult = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
     final User user = authResult.user;
     print(user.uid);
     return authResult;
