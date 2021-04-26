@@ -1,14 +1,12 @@
 import 'package:batua/Services/facebook_auth.dart';
 import 'package:batua/utils/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class Home extends StatelessWidget {
   final AuthService auth = AuthService();
   String amount = "30.500";
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -16,26 +14,7 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 20,
-            ),
-            Container(
-              //color: Colors.red,
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                icon: Icon(
-                  Icons.exit_to_app_sharp,
-                  size: 30.0,
-                  color: Colors.red,
-                ),
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  await auth.signOutFB();
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                    RouteConstants.LOGIN_SCREEN,
-                    (route) => false,
-                  );
-                },
-              ),
+              height: 60,
             ),
             // ignore: avoid_unnecessary_containers
             Container(
