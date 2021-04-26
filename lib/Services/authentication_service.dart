@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -10,6 +9,10 @@ class AuthenticationService {
 
   void addData(String data) {
     databaseRef.push().set({'email': data});
+  }
+
+  Future<String> getuid()async{
+    return _auth.currentUser.uid;
   }
 
   Future<dynamic> signInWithEmailAndPassword(
@@ -37,7 +40,7 @@ class AuthenticationService {
 
       final User user = (await _auth.createUserWithEmailAndPassword(
               email: email, password: password)).user;
-      addData(user.email);
+      //addData(user.email);
 
       // Email Verification Sending
       user.sendEmailVerification();

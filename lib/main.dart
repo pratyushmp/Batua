@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: RouteConstants.AUTH_WRAPPER,
+        initialRoute: RouteConstants.LOGIN_SCREEN,
         onGenerateRoute: RoutePage.generateRoute,
       ),
     );

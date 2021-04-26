@@ -35,4 +35,5 @@ class RouteConstants {
   static const SIGNUP_SCREEN = '/signup-screen';
   static const HOME_SCREEN = '/home-screen';
   static const AUTH_WRAPPER = '/auth-wrapper';
+  static const createGoalPage = '/create-goal-page';
 }
