@@ -145,7 +145,7 @@ class _CreateGoalPageState extends State<CreateGoalPage> {
                       ),
                     ),
                     Text(
-                      Jiffy().add(months: noOfMonth.toInt()).yMMMM,
+                      Jiffy().add(months: noOfMonth.toInt()).yMMMM.toString(),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 35,

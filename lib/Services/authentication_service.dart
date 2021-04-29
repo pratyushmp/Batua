@@ -11,6 +11,10 @@ class AuthenticationService {
     databaseRef.push().set({'email': data});
   }
 
+  Future<String> getuid()async{
+    return _auth.currentUser.uid;
+  }
+
   Future<dynamic> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -36,7 +40,7 @@ class AuthenticationService {
 
       final User user = (await _auth.createUserWithEmailAndPassword(
               email: email, password: password)).user;
-      addData(user.email);
+      //addData(user.email);
 
       // Email Verification Sending
       user.sendEmailVerification();

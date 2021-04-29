@@ -1,5 +1,9 @@
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/UI/loading.dart';
+import 'package:batua/UI/user_details_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart';
 
@@ -22,6 +26,8 @@ class SignUpScreenState extends State<SignUpScreen> {
   String _email = '';
   bool ishidden = true;
   bool ishidden_ = true;
+  final db = FirebaseFirestore.instance;
+  final FirebaseAuth _fire = FirebaseAuth.instance;
 
   // ignore: non_constant_identifier_names
   static Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
@@ -275,12 +281,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                   child: TextButton(
                     onPressed: () async {
                       if (_formkey.currentState.validate()) {
+                       
                         dynamic result = await _auth
                             .registerWithEmailAndPassword(_email, _password);
                         if (result != null) {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            RouteConstants.LOGIN_SCREEN,
-                            (route) => false,
+                        final uid =  await _auth.getuid();
+                       
+                       db.collection('User Data').doc(uid).set({'Email':_email});
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> UserDetailsScreen(uid: uid,email: _email,))
                           );
                           showDialog(
                               context: context,
@@ -316,6 +324,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         }
                       }
                     },
+  
                     style: TextButton.styleFrom(
                       primary: primary_color,
                       backgroundColor: secondary_color,

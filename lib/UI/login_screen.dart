@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (_formkey.currentState.validate()) {
                         dynamic result = await _auth.signInWithEmailAndPassword(
                             _email, _password);
-                        print(result);
+                        //print(result);
                         if (result == true) {
                           setState(() {
                             showSpinner = false;

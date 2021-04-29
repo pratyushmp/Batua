@@ -1,18 +1,34 @@
+import 'package:batua/Services/authentication_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart' as constants;
 
 class UserDetailsScreen extends StatefulWidget {
+  final String uid;
+  final String email;
+  const UserDetailsScreen({Key key,this.uid,this.email}): super(key: key);
+
   @override
   State<StatefulWidget> createState() {
-    return _UserDetailsScreenState();
+    return _UserDetailsScreenState(uid: uid,email:email);
   }
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
+  String uid;
+  String email;
+  _UserDetailsScreenState({this.uid,this.email});
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-
+  
+String _name = '';
+String _phone = '';
+String _email = '';
+final db = FirebaseFirestore.instance;
+final AuthenticationService _auth = AuthenticationService();
+ final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final MediaQueryData _mediaQuery = MediaQuery.of(context);
@@ -22,46 +38,49 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          Stack(
-            children: [
-              // Profile picture
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                height: _height * 0.2,
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                  shape: BoxShape.circle,
-                ),
-                child: const Center(
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white54,
-                    size: 100,
-                  ),
-                ),
-              ),
-
-              // Plus button
-              Positioned(
-                right: _width * 0.35,
-                top: _height * 0.16,
-                child: Container(
-                  height: _height * 0.05,
-                  width: _height * 0.05,
+          Form(
+            key: _formkey,
+            child: Stack(
+              children: [
+                // Profile picture
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  height: _height * 0.2,
                   decoration: const BoxDecoration(
-                    color: Color(0xff00B0FF),
+                    color: Colors.grey,
                     shape: BoxShape.circle,
                   ),
                   child: const Center(
                     child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 20,
+                      Icons.person,
+                      color: Colors.white54,
+                      size: 100,
                     ),
                   ),
                 ),
-              )
-            ],
+
+                // Plus button
+                Positioned(
+                  right: _width * 0.35,
+                  top: _height * 0.16,
+                  child: Container(
+                    height: _height * 0.05,
+                    width: _height * 0.05,
+                    decoration: const BoxDecoration(
+                      color: Color(0xff00B0FF),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
 
           // Name text
@@ -84,6 +103,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             child: Container(
               height: _height * 0.1,
               child: TextFormField(
+                onChanged: (val){
+                  setState((){
+                  val =_name ;             
+                  });
+                  
+                },
                 validator: (name) {
                   if (name.isEmpty) {
                     return 'Required';
@@ -116,13 +141,16 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 22),
             // ignore: sized_box_for_whitespace
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.1,
-              child: TextFormField(
-                controller: _emailController,
-                onChanged: (value) {},
-                decoration: constants.inputDecoration.copyWith(
-                  hintText: 'Email(to be autofilled and disabled)',
-                ),
+
+              height: MediaQuery.of(context).size.height * 0.08,
+              decoration: BoxDecoration(
+                color: constants.textField_color2,                
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left:10.0,top: 15),
+                child: Text(email,style: const TextStyle(fontSize: 16,),),
               ),
             ),
           ),
@@ -146,8 +174,18 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             child: Container(
               height: MediaQuery.of(context).size.height * 0.1,
               child: TextFormField(
+                validator: (val){
+                  if(val.length < 10){
+                    return "Enter valid phone number";
+                  }
+                },
                 controller: _phoneController,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                         value = _phone;             
+                              });
+                  
+                },
                 decoration: constants.inputDecoration.copyWith(
                   hintText: '(Optional)',
                 ),
@@ -163,13 +201,23 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               height: MediaQuery.of(context).size.height * 0.08,
               // ignore: deprecated_member_use
               child: RaisedButton(
-                onPressed: () {
-                  print(_nameController.text);
-                  print(_emailController.text);
-                  print(_phoneController.text);
+                onPressed: ()async{
+                 if(_formkey.currentState.validate()){
+                    db.collection('User Data').doc(uid).set({
+                    'Name': _nameController.text,
+                    'Email':email,
+                    'Mobile Number': _phoneController.text,
+                  });
                   Navigator.of(context).pushNamed(
-                    constants.RouteConstants.HOME_SCREEN,
+                    constants.RouteConstants.LOGIN_SCREEN,
                   );
+                 }
+                  
+                  
+                  // print(_nameController.text);
+                   //print(email);
+                  // print(_phoneController.text);
+                  
                 },
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
