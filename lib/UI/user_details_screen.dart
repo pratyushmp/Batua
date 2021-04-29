@@ -26,9 +26,11 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 String _name = '';
 String _phone = '';
 String _email = '';
+
 final db = FirebaseFirestore.instance;
 final AuthenticationService _auth = AuthenticationService();
- final _formkey = GlobalKey<FormState>();
+final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final MediaQueryData _mediaQuery = MediaQuery.of(context);
