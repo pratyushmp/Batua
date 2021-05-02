@@ -36,5 +36,5 @@ class RouteConstants {
   static const HOME_SCREEN = '/home-screen';
   static const AUTH_WRAPPER = '/auth-wrapper';
   static const createGoalPage = '/create-goal-page';
-  static const settingsScreen = '/settings-screen';
+  static const SettingsScreen = '/settings-screen';
 }

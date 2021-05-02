@@ -79,7 +79,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: _height * 0.5,
+              height: _height * 0.45,
             ),
             const Text(
               'Made in 🇮🇳 with ❤️ by Open-Source',

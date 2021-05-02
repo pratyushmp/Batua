@@ -1,16 +1,25 @@
 import 'package:batua/Services/authentication_service.dart';
+import 'package:batua/UI/settings_screen.dart';
 import 'package:batua/utils/constants.dart';
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Myprofile extends StatelessWidget {
   final AuthenticationService _auth = AuthenticationService();
 
-  //Textfield
-  Widget singleTextBox(String name) {
-    return Column(
-      children: [
-        Container(
-          height: 50,
+
+
+Future<DocumentSnapshot> getUserInfo()async{ 
+  final uid =  await _auth.getuid();
+  return FirebaseFirestore.instance.collection('User Data').doc(uid).get();
+  }
+
+//Textfield
+Widget SingleTextBox(String name){
+  return Column(
+    children: [
+      Container(
+          height: 50,                
           width: 390,
           decoration: BoxDecoration(
               border: Border.all(), borderRadius: BorderRadius.circular(12)),
@@ -30,12 +39,9 @@ class Myprofile extends StatelessWidget {
   }
 
 //app settings button
-  Widget appSettingsButton({
-    BuildContext context,
-    String routeName,
-  }) {
+Widget AppSettingsButton(BuildContext ct){
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(routeName),
+      onTap: () => Navigator.of(ct).push(MaterialPageRoute(builder: (context)=> SettingsScreen())),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -55,16 +61,17 @@ class Myprofile extends StatelessWidget {
     );
   }
 
-  Widget signOutButton(BuildContext ctx) {
+Widget signOutButton(BuildContext ctx) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         TextButton(
           onPressed: () async {
             await _auth.signOut();
           },
+          // ignore: sort_child_properties_last
           child: Text("Sign Out",
               style: TextStyle(
                   fontSize: 16.0,
@@ -78,7 +85,7 @@ class Myprofile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0)),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
       ],
@@ -89,60 +96,62 @@ class Myprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Center(
-                  child: Column(
+        child: FutureBuilder(
+          future: getUserInfo(),
+          builder:(context, AsyncSnapshot<DocumentSnapshot> snapshot){
+             if(!snapshot.hasData) return Center(
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,                    
+                     children: [
+                       CircularProgressIndicator(
+                         
+                       ),
+                     ],
+                   ),
+                 ); 
+              return SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(left: 20,right: 20),
+                  child: Center(child:Column(
                     children: [
                       const SizedBox(height: 30),
                       CircleAvatar(
-                        backgroundImage: AssetImage('images/pr.png'),
-                        backgroundColor: Colors.white,
-                        radius: 95,
+                      backgroundImage: AssetImage('images/pr.png'),                      
+                      backgroundColor: Colors.white,  
+                      radius: 95,
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
+                      const SizedBox(height: 30,),
+                      Row(                        
+                        // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          Text(
-                            'Account Details',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                          // ignore: prefer_const_constructors
+                          Text('Account Details',style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,                   
+                          ),),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      singleTextBox('Name Surname'),
-                      singleTextBox('Mobile Number'),
-                      singleTextBox('Email'),
-                      SizedBox(
-                        height: 30,
-                        child: Divider(
-                          thickness: 0.5,
-                        ),
-                      ),
-                      appSettingsButton(
-                        context: context,
-                        routeName: RouteConstants.settingsScreen,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 25,),
+                      
+                      const SizedBox(height: 25,child: Divider(color: Colors.black,thickness: 0.5,),),
+                      SingleTextBox(snapshot.data.data()['Name'].toString()),
+                      SingleTextBox(snapshot.data.data()['Email'].toString()),
+                      SingleTextBox(snapshot.data.data()['Mobile Number'].toString()),
+                      const SizedBox(height: 30,child: Divider(color: Colors.black,thickness: 0.5,),),
+                      AppSettingsButton(context),
+                      // ignore: prefer_const_constructors
+                      SizedBox(height: 30,child: Divider(color: Colors.black,thickness: 0.5,),),
+                      
                       signOutButton(context),
                     ],
-                  ),
+                  ) ,),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+               ); 
+              },
         ),
       ),
     );

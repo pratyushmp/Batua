@@ -35,7 +35,7 @@ class RoutePage {
         return PageRouteBuilder(
           pageBuilder: (ctx, firstAni, secondAni) => CreateGoalPage(),
         );
-      case RouteConstants.settingsScreen:
+      case RouteConstants.SettingsScreen:
         return PageRouteBuilder(
           pageBuilder: (ctx, firstAni, secondAni) => SettingsScreen(),
         );
