@@ -1,7 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:batua/Services/facebook_auth.dart';
 import 'package:batua/UI/home_view.dart';
-import 'package:batua/UI/profile.dart';
+import 'package:batua/UI/profile_screen.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     Home(),
-    Myprofile(),
+    ProfileScreen(),
   ];
 
   final iconList = [Icons.access_time, Icons.person_outline];
