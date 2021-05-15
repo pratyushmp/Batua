@@ -1,3 +1,4 @@
+import 'package:batua/models/icon_item.dart';
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
@@ -30,12 +31,44 @@ InputDecoration inputDecoration = InputDecoration(
   ),
 );
 
+final List<IconItem> iconItemList = <IconItem>[
+  IconItem(
+    footer: 'Laptop',
+    iconData: Icons.laptop,
+  ),
+  IconItem(
+    footer: 'House',
+    iconData: Icons.house,
+  ),
+  IconItem(
+    footer: 'Shopping',
+    iconData: Icons.shopping_bag,
+  ),
+  IconItem(
+    footer: 'Bike',
+    iconData: Icons.pedal_bike,
+  ),
+  IconItem(
+    footer: 'Watch',
+    iconData: Icons.watch,
+  ),
+  IconItem(
+    footer: 'Savings',
+    iconData: Icons.monetization_on,
+  ),
+  IconItem(
+    footer: 'Anything else',
+    iconData: Icons.category,
+  ),
+];
+
 class RouteConstants {
   static const LOGIN_SCREEN = '/login-screen';
   static const USER_DETAIL_SCREEN = '/user-detail-screen';
   static const SIGNUP_SCREEN = '/signup-screen';
   static const HOME_SCREEN = '/home-screen';
   static const AUTH_WRAPPER = '/auth-wrapper';
-  static const createGoalPage = '/create-goal-page';
+  static const createGoalPage2 = '/create-goal-page-2';
   static const SettingsScreen = '/settings-screen';
+  static const createGoalPage1 = '/create-goal-page-1';
 }
