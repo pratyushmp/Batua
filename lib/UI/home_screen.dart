@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: secondary_color,
         onPressed: () {
           Navigator.of(context).pushNamed(
-            RouteConstants.createGoalPage,
+            RouteConstants.createGoalPage1,
           );
         },
         child: const Icon(

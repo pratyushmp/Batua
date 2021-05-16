@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jiffy/jiffy.dart';
 
-class CreateGoalPage extends StatefulWidget {
+class CreateGoalPage2 extends StatefulWidget {
   @override
-  _CreateGoalPageState createState() => _CreateGoalPageState();
+  _CreateGoalPage2State createState() => _CreateGoalPage2State();
 }
 
-class _CreateGoalPageState extends State<CreateGoalPage> {
+class _CreateGoalPage2State extends State<CreateGoalPage2> {
   double _saveAmountValue = 1.0, _monthlyContributionValue = 1.0, noOfMonth = 0;
 
   @override
@@ -26,20 +26,20 @@ class _CreateGoalPageState extends State<CreateGoalPage> {
             height: _height * 0.06,
           ),
           Row(
-            children: [
+            children: <Widget>[
               SizedBox(
-                width: _width * 0.07,
+                width: _width * 0.03,
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Icon(
+              IconButton(
+                icon: const Icon(
                   Icons.arrow_back_ios,
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
               ),
               SizedBox(
-                width: _width * 0.3,
+                width: _width * 0.28,
               ),
               const Text(
                 'Step 2',
@@ -52,26 +52,11 @@ class _CreateGoalPageState extends State<CreateGoalPage> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(
-              top: _height * 0.06,
-              left: _width * 0.11,
+            padding: EdgeInsets.all(
+              _width * 0.11,
             ),
             child: const Text(
-              "Let's create your",
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 26,
-                fontFamily: 'Poppins-Regular',
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(
-              left: _width * 0.11,
-              bottom: _height * 0.08,
-            ),
-            child: const Text(
-              "saving goal!",
+              "Let's create your\nsaving goal!",
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 26,
