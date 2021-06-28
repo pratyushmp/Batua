@@ -6,30 +6,31 @@ import 'package:batua/utils/constants.dart' as constants;
 class UserDetailsScreen extends StatefulWidget {
   final String uid;
   final String email;
-  const UserDetailsScreen({Key key,this.uid,this.email}): super(key: key);
+  const UserDetailsScreen({Key key, this.uid, this.email}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _UserDetailsScreenState(uid: uid,email:email);
+    // ignore: no_logic_in_create_state
+    return _UserDetailsScreenState(uid: uid, email: email);
   }
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
   String uid;
   String email;
-  _UserDetailsScreenState({this.uid,this.email});
+  _UserDetailsScreenState({this.uid, this.email});
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  
-String _name = '';
-String _phone = '';
-String _email = '';
 
-final db = FirebaseFirestore.instance;
-final AuthenticationService _auth = AuthenticationService();
-final _formkey = GlobalKey<FormState>();
+  String _name = '';
+  String _phone = '';
+  String _email = '';
+
+  final db = FirebaseFirestore.instance;
+  final AuthenticationService _auth = AuthenticationService();
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +106,10 @@ final _formkey = GlobalKey<FormState>();
             child: Container(
               height: _height * 0.1,
               child: TextFormField(
-                onChanged: (val){
-                  setState((){
-                  val =_name ;             
+                onChanged: (val) {
+                  setState(() {
+                    val = _name;
                   });
-                  
                 },
                 validator: (name) {
                   if (name.isEmpty) {
@@ -143,16 +143,20 @@ final _formkey = GlobalKey<FormState>();
             padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 22),
             // ignore: sized_box_for_whitespace
             child: Container(
-
               height: MediaQuery.of(context).size.height * 0.08,
               decoration: BoxDecoration(
-                color: constants.textField_color2,                
+                color: constants.textField_color2,
                 border: Border.all(),
                 borderRadius: BorderRadius.circular(20.0),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left:10.0,top: 15),
-                child: Text(email,style: const TextStyle(fontSize: 16,),),
+                padding: const EdgeInsets.only(left: 10.0, top: 15),
+                child: Text(
+                  email,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ),
           ),
@@ -176,17 +180,16 @@ final _formkey = GlobalKey<FormState>();
             child: Container(
               height: MediaQuery.of(context).size.height * 0.1,
               child: TextFormField(
-                validator: (val){
-                  if(val.length < 10){
-                    return "Enter valid phone number";
-                  }
-                },
+                // validator: (val){
+                //   if(val.length < 10){
+                //     return "Enter valid phone number";
+                //   }
+
                 controller: _phoneController,
                 onChanged: (value) {
                   setState(() {
-                         value = _phone;             
-                              });
-                  
+                    value = _phone;
+                  });
                 },
                 decoration: constants.inputDecoration.copyWith(
                   hintText: '(Optional)',
@@ -203,23 +206,21 @@ final _formkey = GlobalKey<FormState>();
               height: MediaQuery.of(context).size.height * 0.08,
               // ignore: deprecated_member_use
               child: RaisedButton(
-                onPressed: ()async{
-                 if(_formkey.currentState.validate()){
+                onPressed: () async {
+                  if (_formkey.currentState.validate()) {
                     db.collection('User Data').doc(uid).set({
-                    'Name': _nameController.text,
-                    'Email':email,
-                    'Mobile Number': _phoneController.text,
-                  });
-                  Navigator.of(context).pushNamed(
-                    constants.RouteConstants.LOGIN_SCREEN,
-                  );
-                 }
-                  
-                  
+                      'Name': _nameController.text,
+                      'Email': email,
+                      'Mobile Number': _phoneController.text,
+                    });
+                    Navigator.of(context).pushNamed(
+                      constants.RouteConstants.LOGIN_SCREEN,
+                    );
+                  }
+
                   // print(_nameController.text);
-                   //print(email);
+                  //print(email);
                   // print(_phoneController.text);
-                  
                 },
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20))),
