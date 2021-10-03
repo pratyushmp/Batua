@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:batua/utils/constants.dart';
 
 class HomeDrawer extends StatelessWidget {
   @override
@@ -12,6 +11,7 @@ class HomeDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
+            decoration: BoxDecoration(color: Theme.of(context).accentColor),
             child: Stack(
               // alignment: Alignment.center,
               children: [
@@ -22,7 +22,7 @@ class HomeDrawer extends StatelessWidget {
                       height: 100,
                       width: 280,
                       decoration: BoxDecoration(
-                          color: secondary_color,
+                          color: Theme.of(context).accentColor,
                           borderRadius: BorderRadius.circular(20)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
