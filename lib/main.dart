@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Poppins',
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          accentColor: secondary_color
         ),
         initialRoute: RouteConstants.AUTH_WRAPPER,
         onGenerateRoute: RoutePage.generateRoute,
