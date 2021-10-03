@@ -1,3 +1,5 @@
+
+
 import 'package:batua/models/icon_item.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -138,10 +140,10 @@ class _CreateGoalPage1State extends State<CreateGoalPage1> {
   }
 
   Widget gridItem({
-    @required String footer,
-    @required IconData iconData,
-    @required Color color,
-    @required IconItem item,
+    required String footer,
+    required IconData iconData,
+    required Color color,
+    required IconItem item,
   }) =>
       GestureDetector(
         onTap: () {
@@ -178,9 +180,9 @@ class _CreateGoalPage1State extends State<CreateGoalPage1> {
         ),
       );
 
-  Widget floatingActionButtonBuilder({BuildContext ctx}) => InkWell(
+  Widget floatingActionButtonBuilder({BuildContext? ctx}) => InkWell(
         borderRadius: BorderRadius.circular(30),
-        onTap: () => Navigator.of(ctx).pushNamed(
+        onTap: () => Navigator.of(ctx!).pushNamed(
           RouteConstants.createGoalPage2,
         ),
         child: Container(

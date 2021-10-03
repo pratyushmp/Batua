@@ -1,3 +1,5 @@
+
+
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/Services/facebook_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -133,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {
                         showSpinner = true;
                       });
-                      if (_formkey.currentState.validate()) {
+                      if (_formkey.currentState!.validate()) {
                         dynamic result = await _auth.signInWithEmailAndPassword(
                             _email, _password);
                         //print(result);

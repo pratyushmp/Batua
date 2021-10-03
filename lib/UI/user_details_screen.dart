@@ -1,12 +1,14 @@
+
+
 import 'package:batua/Services/authentication_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:batua/utils/constants.dart' as constants;
 
 class UserDetailsScreen extends StatefulWidget {
-  final String uid;
-  final String email;
-  const UserDetailsScreen({Key key, this.uid, this.email}) : super(key: key);
+  final String? uid;
+  final String? email;
+  const UserDetailsScreen({Key? key, this.uid, this.email}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -16,8 +18,8 @@ class UserDetailsScreen extends StatefulWidget {
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
-  String uid;
-  String email;
+  String? uid;
+  String? email;
   _UserDetailsScreenState({this.uid, this.email});
 
   final TextEditingController _nameController = TextEditingController();
@@ -112,7 +114,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   });
                 },
                 validator: (name) {
-                  if (name.isEmpty) {
+                  if (name!.isEmpty) {
                     return 'Required';
                   }
                   return null;
@@ -152,7 +154,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0, top: 15),
                 child: Text(
-                  email,
+                  email!,
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -207,7 +209,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
               // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () async {
-                  if (_formkey.currentState.validate()) {
+                  if (_formkey.currentState!.validate()) {
                     db.collection('User Data').doc(uid).set({
                       'Name': _nameController.text,
                       'Email': email,

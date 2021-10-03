@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
-  final String email;
+  final String? email;
 
   User({
     this.email,
@@ -9,7 +9,7 @@ class User {
 
   factory User.fromDocument(DocumentSnapshot doc) {
     return User(
-      email: doc['email'] as String,
+      email: doc['email'] as String?,
     );
   }
 }

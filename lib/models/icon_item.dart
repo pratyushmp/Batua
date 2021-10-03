@@ -6,8 +6,8 @@ class IconItem {
   bool selected;
 
   IconItem({
-    @required this.footer,
-    @required this.iconData,
+    required this.footer,
+    required this.iconData,
     this.selected = false,
   });
 }
