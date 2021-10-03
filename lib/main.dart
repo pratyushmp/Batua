@@ -28,10 +28,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Batua',
-        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Poppins',
-          primarySwatch: Colors.blue,
+          primarySwatch: primary_color,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           accentColor: secondary_color
         ),
