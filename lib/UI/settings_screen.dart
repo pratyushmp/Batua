@@ -1,14 +1,16 @@
+
+
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatelessWidget {
-  Text textBuilder({String text}) => Text(
+  Text textBuilder({required String text}) => Text(
         text,
         style: TextStyle(
           color: secondary_color,
         ),
       );
-  Icon iconBuilder({IconData iconData}) => Icon(
+  Icon iconBuilder({IconData? iconData}) => Icon(
         iconData,
         color: secondary_color,
       );

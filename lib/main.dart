@@ -1,4 +1,5 @@
 import 'package:batua/Services/authentication_service.dart';
+import 'package:batua/models/user.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:batua/utils/route_page.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
         ),
         StreamProvider(
           create: (context) =>
-              context.read<AuthenticationService>().authStateChanges, initialData: null,
+              context.read<AuthenticationService>().authStateChanges,
+          initialData: User(),
         )
       ],
       child: MaterialApp(

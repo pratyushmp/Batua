@@ -1,3 +1,5 @@
+
+
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/UI/loading.dart';
 import 'package:batua/UI/user_details_screen.dart';
@@ -140,7 +142,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                             setState(() => _email = value);
                           },
                           validator: (value) =>
-                              value.isEmpty ? 'Enter an Email' : null,
+                              value!.isEmpty ? 'Enter an Email' : null,
                           decoration: InputDecoration(
                               hintText: 'Type something...',
                               fillColor: textField_color,
@@ -179,7 +181,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                         child: TextFormField(
                           obscureText: ishidden,
                           controller: _passwordController,
-                          validator: (val) => val.length < 6
+                          validator: (val) => val!.length < 6
                               ? 'Enter a password 6+ chars long'
                               : null,
                           onChanged: (value) {
@@ -280,7 +282,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                   // ignore: deprecated_member_use
                   child: TextButton(
                     onPressed: () async {
-                      if (_formkey.currentState.validate()) {
+                      if (_formkey.currentState!.validate()) {
                        
                         dynamic result = await _auth
                             .registerWithEmailAndPassword(_email, _password);

@@ -1,3 +1,5 @@
+
+
 import 'package:awesome_slider/awesome_slider.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -177,10 +179,10 @@ class _CreateGoalPage2State extends State<CreateGoalPage2> {
   }
 
   Column _cardBuilder({
-    double width,
-    double height,
-    String cardTitle,
-    bool first,
+    required double width,
+    required double height,
+    required String cardTitle,
+    required bool first,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

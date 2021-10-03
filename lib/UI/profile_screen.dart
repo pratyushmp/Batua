@@ -1,3 +1,5 @@
+
+
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,8 +14,8 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget singleTextBox({
-    @required String text,
-    @required double height,
+    required String text,
+    required double height,
   }) {
     return Container(
       padding: const EdgeInsets.all(15),
@@ -118,22 +120,22 @@ class ProfileScreen extends StatelessWidget {
                     dividerBuilder(),
                     sizedBoxBuilder(_height),
                     singleTextBox(
-                      text: snapshot.data.data()['Name'].toString() ??
+                      text: snapshot.data!.data()!['Name'].toString() ??
                           'No data provided',
                       height: _height,
                     ),
                     sizedBoxBuilder(_height),
                     singleTextBox(
-                      text: snapshot.data.data()['Email'].toString() ??
+                      text: snapshot.data!.data()!['Email'].toString() ??
                           'No data provided',
                       height: _height,
                     ),
                     sizedBoxBuilder(_height),
                     singleTextBox(
-                      text: snapshot.data.data()['Mobile Number'].toString() ==
+                      text: snapshot.data!.data()!['Mobile Number'].toString() ==
                               ''
                           ? 'No data provided'
-                          : snapshot.data.data()['Mobile Number'].toString(),
+                          : snapshot.data!.data()!['Mobile Number'].toString(),
                       height: _height,
                     ),
                     sizedBoxBuilder(_height),

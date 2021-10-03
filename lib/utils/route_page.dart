@@ -10,7 +10,7 @@ import 'package:batua/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 class RoutePage {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteConstants.HOME_SCREEN:
         return PageRouteBuilder(
