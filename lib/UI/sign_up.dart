@@ -144,7 +144,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                           validator: (value) =>
                               value!.isEmpty ? 'Enter an Email' : null,
                           decoration: InputDecoration(
-                              hintText: 'Type something...',
+                              hintText: 'Enter your email',
                               fillColor: textField_color,
                               filled: true,
                               focusedBorder: OutlineInputBorder(
@@ -302,7 +302,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   content: Text(
-                                    "Verification Link Sent to Your Registered Mail\nPlease Verify and Log-In",
+                                    "Verification Link has been sent to Your Registered Mail\nPlease Verify and Log-In",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 );
@@ -318,7 +318,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   content: Text(
-                                    "Email Already Exist",
+                                    "Email Already Exists",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 );
