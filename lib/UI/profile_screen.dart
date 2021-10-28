@@ -1,5 +1,3 @@
-
-
 import 'package:batua/Services/authentication_service.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -132,7 +130,9 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     sizedBoxBuilder(_height),
                     singleTextBox(
-                      text: snapshot.data!.data()!['Mobile Number'].toString() ==
+                      text: snapshot.data!
+                                  .data()!['Mobile Number']
+                                  .toString() ==
                               ''
                           ? 'No data provided'
                           : snapshot.data!.data()!['Mobile Number'].toString(),

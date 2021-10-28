@@ -15,6 +15,22 @@ Color textField_color2 = const Color(0x42000000).withOpacity(0.05);
 // ignore: non_constant_identifier_names
 Color textField_color = Colors.grey.withOpacity(0.10);
 
+MaterialColor primarySwatch = MaterialColor(
+  primary_color.value,
+  const <int, Color>{
+    50: const Color(0xffdddde2), //10%
+    100: const Color(0xffc4c5c9), //20%
+    200: const Color(0xffacacb0), //30%
+    300: const Color(0xff939497), //40%
+    400: const Color(0xff7b7b7e), //50%
+    500: const Color(0xff626264), //60%
+    600: const Color(0xff494a4b), //70%
+    700: const Color(0xff313132), //80%
+    800: const Color(0xff181919), //90%
+    900: const Color(0xff000000), //100%
+  },
+);
+
 InputDecoration inputDecoration = InputDecoration(
   hintStyle: const TextStyle(
     color: Color(0x42000000),

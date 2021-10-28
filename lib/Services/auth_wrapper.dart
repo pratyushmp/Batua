@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<User>(context,listen:false).metadata;
 
     // return either the Home or Login screen
     if (user == null) {
