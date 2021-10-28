@@ -29,11 +29,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Batua',
         theme: ThemeData(
-          fontFamily: 'Poppins',
-          primarySwatch: primary_color,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          accentColor: secondary_color
-        ),
+            fontFamily: 'Poppins',
+            primarySwatch: primarySwatch,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            accentColor: secondary_color),
         initialRoute: RouteConstants.AUTH_WRAPPER,
         onGenerateRoute: RoutePage.generateRoute,
       ),
