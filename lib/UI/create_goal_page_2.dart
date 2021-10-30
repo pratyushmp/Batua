@@ -1,5 +1,3 @@
-
-
 import 'package:awesome_slider/awesome_slider.dart';
 import 'package:batua/utils/constants.dart';
 import 'package:flutter/material.dart';
