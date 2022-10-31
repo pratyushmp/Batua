@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          "You've already saved:",
+                          "You've already saved: ",
                           style: TextStyle(
                             color: Colors.grey,
                           ),
