@@ -35,7 +35,7 @@ https://drive.google.com/file/d/1-BHo4po-p11s8qNos32L7R5Zo1NFmJVT/view?usp=shari
 
 
 ## Contributing Guidelines:📝
-* Checkout the [Contributing.md](Contributing.md) file before getting started with your contribution.
+* Checkout the [Contributing.md](Contributing.md) file before getting started with your contributions.
 
 ## Contributors:👨‍💻
 
