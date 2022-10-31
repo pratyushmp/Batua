@@ -119,7 +119,7 @@ class ProfileScreen extends StatelessWidget {
                     sizedBoxBuilder(_height),
                     singleTextBox(
                       text: snapshot.data!.data()!['Name'].toString() ??
-                          'No data provided',
+                          'No Data Provided',
                       height: _height,
                     ),
                     sizedBoxBuilder(_height),
